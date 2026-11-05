@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Common -->
+    <string name="action_cancel">Kanselleer</string>
+    <string name="action_submit">Dien in</string>
+    <string name="action_send">Stuur</string>
+    <string name="view_all">Sien alles</string>
+    <string name="role_tenant">Huurder</string>
+    <string name="role_landlord">Verhuurder</string>
+    <string name="not_set">Nie gestel nie</string>
+    <string name="untitled">Sonder titel</string>
+
+    <!-- Accessibility descriptions -->
+    <string name="cd_logo">Homio-logo</string>
+    <string name="cd_rent_due">Huur verskuldig</string>
+    <string name="cd_open_requests">Oop versoeke</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_home">Tuis</string>
+    <string name="nav_rent">Huur</string>
+    <string name="nav_properties">Eiendomme</string>
+    <string name="nav_maintenance">Onderhoud</string>
+    <string name="nav_messages">Boodskappe</string>
+    <string name="nav_settings">Instellings</string>
+
+    <!-- Login / Register -->
+    <string name="hint_email">E-pos</string>
+    <string name="hint_password">Wagwoord</string>
+    <string name="hint_confirm_password">Bevestig wagwoord</string>
+    <string name="hint_full_name">Volle naam</string>
+    <string name="btn_login">Teken in</string>
+    <string name="btn_sign_up">Registreer</string>
+    <string name="link_go_to_register">Het jy nie \'n rekening nie? Registreer</string>
+    <string name="link_go_to_login">Het jy reeds \'n rekening? Teken in</string>
+    <string name="label_i_am_a">Ek is \'n:</string>
+    <string name="login_error_empty">Voer asseblief beide e-pos en wagwoord in</string>
+    <string name="login_failed">Teken-in het misluk: %1$s</string>
+    <string name="register_error_empty_fields">Vul asseblief alle velde in</string>
+    <string name="register_error_password_mismatch">Wagwoorde stem nie ooreen nie</string>
+    <string name="register_error_password_short">Wagwoord moet minstens 6 karakters lank wees</string>
+    <string name="register_error_select_type">Kies asseblief Huurder of Verhuurder</string>
+    <string name="register_failed">Registrasie het misluk: %1$s</string>
+
+    <!-- Dashboards -->
+    <string name="greeting_default">Goeiemôre</string>
+    <string name="greeting_with_name">Goeiemôre, %1$s</string>
+    <string name="tenant_dashboard_subtitle">Hier is wat met jou huis aangaan</string>
+    <string name="landlord_dashboard_subtitle">Hier is \'n oorsig van jou eiendomme</string>
+    <string name="label_tenants">Huurders</string>
+    <string name="label_open_requests">Oop versoeke</string>
+    <string name="label_open_request">Oop versoek</string>
+    <string name="tenants_summary_empty">Nog geen huurders nie — tik om een by te voeg</string>
+    <string name="recent_activity">Onlangse aktiwiteit</string>
+    <string name="no_recent_activity">Nog geen onlangse aktiwiteit nie.</string>
+    <string name="upcoming">Komende</string>
+    <string name="nothing_upcoming">Niks komend nie.</string>
+    <string name="next_rent_due">Volgende huur verskuldig</string>
+    <string name="no_rent_due">Nog geen huur verskuldig nie</string>
+    <string name="rent_status">Huurstatus</string>
+    <string name="lease_end">Huurkontrak eindig</string>
+
+    <!-- Rent screen -->
+    <string name="current_month">Huidige maand</string>
+    <string name="no_payment_recorded">Nog geen betaling aangeteken nie</string>
+    <string name="rent_details">Huurbesonderhede</string>
+    <string name="monthly_rent">Maandelikse huur</string>
+    <string name="due_date">Vervaldatum</string>
+    <string name="payment_date">Betaaldatum</string>
+    <string name="deposit">Deposito</string>
+    <string name="payment_history">Betaalgeskiedenis</string>
+    <string name="no_payment_history">Nog geen betaalgeskiedenis nie.</string>
+
+    <!-- Maintenance -->
+    <string name="maintenance_requests_title">Onderhoudsversoeke</string>
+    <string name="btn_report">+ Rapporteer</string>
+    <string name="no_maintenance_requests">Nog geen onderhoudsversoeke nie.</string>
+    <string name="dialog_report_title">Rapporteer \'n probleem</string>
+    <string name="hint_issue_title">Kwessietitel (bv. Kombuiskraan lek)</string>
+    <string name="hint_issue_description">Beskryf die probleem</string>
+    <string name="error_enter_title">Voer asseblief \'n titel in</string>
+    <string name="request_submitted">Versoek ingedien</string>
+    <string name="request_failed">Misluk: %1$s</string>
+    <string name="btn_mark_complete">Merk as voltooi</string>
+    <string name="status_submitted">Ingedien</string>
+    <string name="status_in_progress">In proses</string>
+    <string name="status_completed">Voltooi</string>
+    <string name="category_plumbing">Loodgieterswerk</string>
+    <string name="category_electrical">Elektries</string>
+    <string name="category_appliance">Toestel</string>
+    <string name="category_structural">Struktureel</string>
+    <string name="category_other">Ander</string>
+
+    <!-- Properties -->
+    <string name="btn_add_property">+ Voeg eiendom by</string>
+    <string name="no_properties">Nog geen eiendomme bygevoeg nie. Tik + Voeg eiendom by om te begin.</string>
+    <string name="add_property_title">Voeg eiendom by</string>
+    <string name="hint_address">Adres</string>
+    <string name="hint_property_type">Eiendomstipe (bv. Woonstel, Huis)</string>
+    <string name="hint_rooms">Aantal kamers</string>
+    <string name="hint_rent_amount">Maandelikse huurbedrag (R)</string>
+    <string name="hint_deposit_amount">Depositobedrag (R)</string>
+    <string name="add_property_media_note">Foto\'s en video\'s van die eiendom kan in \'n latere weergawe bygevoeg word.</string>
+    <string name="btn_save_property">Stoor eiendom</string>
+    <string name="error_fill_address_type">Vul asseblief die adres en eiendomstipe in</string>
+    <string name="property_added">Eiendom bygevoeg</string>
+    <string name="property_save_failed">Kon nie stoor nie: %1$s</string>
+    <string name="rent_per_month">%1$s / maand</string>
+    <plurals name="rooms_count">
+        <item quantity="one">%d kamer</item>
+        <item quantity="other">%d kamers</item>
+    </plurals>
+
+    <!-- Messages -->
+    <string name="titleMessages">Boodskappe</string>
+    <string name="hintTypeMessage">Tik \'n boodskap...</string>
+    <string name="cdRecordAudio">Neem klank op</string>
+    <string name="cdSendMessage">Stuur boodskap</string>
+    <string name="chatErrorEmpty">Boodskap kan nie leeg wees nie</string>
+    <string name="no_messages">Nog geen boodskappe nie</string>
+    <!-- Settings -->
+    <string name="settings_title">Instellings</string>
+    <string name="hint_phone">Telefoonnommer</string>
+    <string name="btn_save_changes">Stoor veranderinge</string>
+    <string name="btn_logout">Teken uit</string>
+    <string name="label_language">Taal</string>
+    <string name="settings_saved">Instellings gestoor</string>
+    <string name="settings_save_failed">Kon nie stoor nie</string>
+
+    <string name="notif_channel_requests_name">Onderhoudsversoeke</string>
+    <string name="notif_channel_requests_desc">Nuwe en opgedateerde onderhoudsversoeke</string>
+    <string name="notif_channel_messages_name">Boodskappe</string>
+    <string name="notif_channel_messages_desc">Nuwe boodskappe</string>
+    <string name="notif_new_request_title">Nuwe onderhoudsversoek</string>
+    <string name="notif_status_title">Onderhoudsopdatering</string>
+    <string name="notif_status_text">“%1$s” — status: %2$s</string>
+    <string name="notif_message_from_tenant">Nuwe boodskap van huurder</string>
+    <string name="notif_message_from_landlord">Nuwe boodskap van verhuurder</string>
+
+    <string name="request_saved_offline">Vanlyn gestoor — dit sal sinkroniseer wanneer jy weer aanlyn is</string>
+    <string name="waiting_to_sync">Wag om te sinkroniseer</string>
+
+    <string name="btn_submit_proof">Dien bewys van betaling in</string>
+    <string name="submit_payment_title">Bewys van betaling</string>
+    <string name="hint_payment_amount">Bedrag betaal (R)</string>
+    <string name="hint_payment_month">Maand betaal vir (bv. 2026-11)</string>
+    <string name="hint_payment_reference">Betaalverwysing (opsioneel)</string>
+    <string name="hint_payment_note">Nota (opsioneel)</string>
+    <string name="btn_choose_photo">Kies foto</string>
+    <string name="btn_change_photo">Verander foto</string>
+    <string name="photo_none">Nog geen foto gekies nie</string>
+    <string name="photo_ready">Foto gereed · %1$d KB</string>
+    <string name="cd_proof_preview">Voorskou van jou bewys van betaling</string>
+    <string name="error_payment_amount">Voer \'n geldige bedrag in</string>
+    <string name="error_payment_month">Gebruik die formaat JJJJ-MM, bv. 2026-11</string>
+    <string name="error_payment_photo">Kies asseblief \'n foto van jou bewys van betaling</string>
+    <string name="error_photo_unreadable">Kon nie daardie foto lees nie. Probeer \'n ander een.</string>
+    <string name="payment_submitted">Bewys van betaling gestuur</string>
+    <string name="payment_failed">Kon nie stuur nie: %1$s</string>
+    <string name="action_failed">Iets het verkeerd geloop: %1$s</string>
+    <string name="error_no_connection">Geen verbinding nie. Kontroleer jou internet en probeer weer.</string>
+    <string name="payment_load_failed">Kon nie betalings laai nie</string>
+    <string name="payment_status_pending">Hangende hersiening</string>
+    <string name="payment_status_verified">Geverifieer</string>
+    <string name="payment_status_rejected">Afgekeur</string>
+    <string name="payment_reference_line">Verw: %1$s</string>
+    <string name="payment_rejected_reason">Rede: %1$s</string>
+    <string name="payments_title">Betalings</string>
+    <string name="payments_card_summary">Hersien huurders se bewys van betaling</string>
+    <string name="no_payments">Nog geen betalings ingedien nie.</string>
+    <string name="btn_view_proof">Sien bewys</string>
+    <string name="btn_approve">Keur goed</string>
+    <string name="btn_reject">Keur af</string>
+    <string name="btn_back">Terug</string>
+    <string name="action_close">Maak toe</string>
+    <string name="dialog_reject_title">Keur betaling af</string>
+    <string name="hint_reject_reason">Rede (verpligtend)</string>
+    <string name="error_reject_reason">Gee asseblief \'n rede</string>
+    <string name="payment_approved">Betaling goedgekeur</string>
+    <string name="payment_rejected">Betaling afgekeur</string>
+    <string name="proof_load_failed">Kon nie die bewys laai nie</string>
+
+    <string name="notif_channel_payments_name">Betalings</string>
+    <string name="notif_channel_payments_desc">Nuwe en hersiene bewys van betaling</string>
+    <string name="notif_new_payment_title">Nuwe bewys van betaling</string>
+    <string name="notif_payment_update_title">Betalingopdatering</string>
+    <string name="notif_payment_verified_text">Jou betaling vir %1$s is geverifieer</string>
+    <string name="notif_payment_rejected_plain">Jou betaling vir %1$s is afgekeur</string>
+    <string name="notif_payment_rejected_text">Jou betaling vir %1$s is afgekeur: %2$s</string>
+
+</resources>

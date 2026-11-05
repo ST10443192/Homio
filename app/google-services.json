@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "966774313045",
+    "project_id": "homio-ce4ce",
+    "storage_bucket": "homio-ce4ce.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966774313045:android:8f6dc6776c5f2d2b0e44dc",
+        "android_client_info": {
+          "package_name": "com.homio.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966774313045-7j4p7h55aaltq4dg2sucjklnoeotn55m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.homio.app",
+            "certificate_hash": "4bf2b7db544ea91aed1dfc2278121b4308780374"
+          }
+        },
+        {
+          "client_id": "966774313045-ok1t5fddugfskfsvqp0ip0ru1lvkplft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsd0qKSY4pL307z2SMYxOuecOGXfpSnOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966774313045-ok1t5fddugfskfsvqp0ip0ru1lvkplft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
