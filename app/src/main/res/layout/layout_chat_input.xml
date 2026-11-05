@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="8dp">
+
+    <!-- Audio Recording Button -->
+    <ImageButton
+        android:id="@+id/btnRecordAudio"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_mic"
+        android:contentDescription="@string/cdRecordAudio" />
+
+    <!-- Message Input Field -->
+    <EditText
+        android:id="@+id/etMessage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/hintTypeMessage"
+        android:inputType="textLongMessage|textCapSentences"
+        android:maxLines="4"
+        android:padding="12dp" />
+
+    <!-- Send Button -->
+    <ImageButton
+        android:id="@+id/btnSendMessage"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_send"
+        android:contentDescription="@string/cdSendMessage" />
+
+</LinearLayout>

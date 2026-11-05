@@ -1,17 +1,17 @@
 package com.homio.app
 
-import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.homio.app.data.MaintenanceRepository
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : BaseActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
@@ -21,10 +21,6 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var btnSave: Button
     private lateinit var btnLogout: Button
     private lateinit var radioGroupLanguage: RadioGroup
-
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(LocaleHelper.applyLocale(newBase))
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,10 +35,10 @@ class SettingsActivity : AppCompatActivity() {
         btnLogout = findViewById(R.id.btnLogout)
         radioGroupLanguage = findViewById(R.id.radioGroupLanguage)
 
-        // Reflect the currently saved language in the radio buttons
-        when (LocaleHelper.getSavedLanguage(this)) {
+        val currentLang = getSharedPreferences("homio_prefs", MODE_PRIVATE).getString("selected_language", "en") ?: "en"
+        when (currentLang) {
             "zu" -> radioGroupLanguage.check(R.id.radioZulu)
-            "tn" -> radioGroupLanguage.check(R.id.radioSetswana)
+            "af" -> radioGroupLanguage.check(R.id.radioAfrikaans)
             else -> radioGroupLanguage.check(R.id.radioEnglish)
         }
 
@@ -53,26 +49,42 @@ class SettingsActivity : AppCompatActivity() {
         radioGroupLanguage.setOnCheckedChangeListener { _, checkedId ->
             val languageCode = when (checkedId) {
                 R.id.radioZulu -> "zu"
-                R.id.radioSetswana -> "tn"
+                R.id.radioAfrikaans -> "af"
                 else -> "en"
             }
-            if (languageCode != LocaleHelper.getSavedLanguage(this)) {
-                LocaleHelper.saveLanguage(this, languageCode)
+            if (languageCode != currentLang) {
+                BaseActivity.setAppLanguage(this, languageCode)
 
-                // Persist to Firestore too, since User.language already exists for this
                 val uid = auth.currentUser?.uid
                 if (uid != null) {
                     db.collection("users").document(uid).update("language", languageCode)
                 }
 
-                recreate()
+                reopenWithoutAnimation()
             }
         }
 
         btnLogout.setOnClickListener {
+            MaintenanceRepository.get(this).clearLocalData()
             auth.signOut()
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
+        }
+    }
+
+    private fun reopenWithoutAnimation() {
+        val restart = Intent(this, SettingsActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        }
+        startActivity(restart)
+        finish()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, 0, 0)
+            overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, 0, 0)
+        } else {
+            @Suppress("DEPRECATION")
+            overridePendingTransition(0, 0)
         }
     }
 

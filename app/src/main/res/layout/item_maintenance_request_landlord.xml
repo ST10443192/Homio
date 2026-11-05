@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -26,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="14sp"
-                android:text="Title"/>
+                tools:text="Title"/>
 
             <TextView
                 android:id="@+id/tvItemSubtitle"
@@ -34,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:textColor="@color/homio_gray"
-                android:text="Category · Date"/>
+                tools:text="Category · Date"/>
         </LinearLayout>
 
         <TextView
@@ -46,7 +47,7 @@
             android:background="@drawable/bg_pill"
             android:textColor="@color/white"
             android:textSize="11sp"
-            android:text="Submitted"/>
+            tools:text="Submitted"/>
     </LinearLayout>
 
     <Button
@@ -54,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:text="Mark Complete"
+        android:text="@string/btn_mark_complete"
         android:textSize="11sp"
         android:layout_marginTop="8dp"/>
 

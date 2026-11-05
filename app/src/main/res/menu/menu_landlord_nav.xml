@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/nav_home_l" android:icon="@drawable/ic_nav_home" android:title="Home" />
-    <item android:id="@+id/nav_properties" android:icon="@drawable/ic_nav_properties" android:title="Properties" />
-    <item android:id="@+id/nav_maintenance_l" android:icon="@drawable/ic_nav_maintenance" android:title="Maintenance" />
-    <item android:id="@+id/nav_messages_l" android:icon="@drawable/ic_nav_messages" android:title="Messages" />
-    <item android:id="@+id/nav_settings_l" android:icon="@drawable/ic_nav_settings" android:title="Settings" />
+    <item android:id="@+id/nav_home_l" android:icon="@drawable/ic_nav_home" android:title="@string/nav_home" />
+    <item android:id="@+id/nav_properties" android:icon="@drawable/ic_nav_properties" android:title="@string/nav_properties" />
+    <item android:id="@+id/nav_maintenance_l" android:icon="@drawable/ic_nav_maintenance" android:title="@string/nav_maintenance" />
+    <item android:id="@+id/nav_messages_l" android:icon="@drawable/ic_nav_messages" android:title="@string/nav_messages" />
+    <item android:id="@+id/nav_settings_l" android:icon="@drawable/ic_nav_settings" android:title="@string/nav_settings" />
 </menu>

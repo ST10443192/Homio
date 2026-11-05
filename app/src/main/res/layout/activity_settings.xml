@@ -51,15 +51,20 @@
             android:id="@+id/radioGroupLanguage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_marginTop="8dp">
 
             <RadioButton
                 android:id="@+id/radioEnglish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lang_english"
-                android:layout_marginEnd="24dp"/>
+                android:text="@string/lang_english"/>
+
+            <RadioButton
+                android:id="@+id/radioAfrikaans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lang_afrikaans"/>
 
             <RadioButton
                 android:id="@+id/radioZulu"
@@ -67,12 +72,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/lang_zulu"/>
         </RadioGroup>
-        <RadioButton
-            android:id="@+id/radioSetswana"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lang_setswana"
-            android:layout_marginStart="24dp"/>
 
         <Button
             android:id="@+id/btnSave"

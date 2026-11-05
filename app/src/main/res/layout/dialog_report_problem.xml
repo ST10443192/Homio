@@ -10,7 +10,7 @@
         android:id="@+id/etReportTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Issue Title (e.g. Kitchen Tap Leak)"/>
+        android:hint="@string/hint_issue_title"/>
 
     <Spinner
         android:id="@+id/spCategory"
@@ -22,7 +22,7 @@
         android:id="@+id/etReportDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Describe the problem"
+        android:hint="@string/hint_issue_description"
         android:minLines="3"
         android:gravity="top"
         android:layout_marginTop="12dp"/>

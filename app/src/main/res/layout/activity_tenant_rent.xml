@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rent"
+                android:text="@string/nav_rent"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/homio_navy"
@@ -41,7 +41,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Current Month"
+                    android:text="@string/current_month"
                     android:textColor="@color/white"
                     android:textSize="13sp"/>
 
@@ -49,7 +49,7 @@
                     android:id="@+id/tvCurrentRentAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R0.00"
+                    android:text="@string/placeholder_amount_zero"
                     android:textColor="@color/white"
                     android:textSize="26sp"
                     android:textStyle="bold"/>
@@ -58,7 +58,7 @@
                     android:id="@+id/tvCurrentRentStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No payment recorded yet"
+                    android:text="@string/no_payment_recorded"
                     android:textColor="@color/white"
                     android:textStyle="bold"/>
             </LinearLayout>
@@ -74,32 +74,33 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Rent Details"
+                    android:text="@string/rent_details"
                     android:textStyle="bold"
                     android:layout_marginBottom="8dp"/>
 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingVertical="4dp">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Monthly Rent" android:textColor="@color/homio_gray"/>
-                    <TextView android:id="@+id/tvMonthlyRent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Not set"/>
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/monthly_rent" android:textColor="@color/homio_gray"/>
+                    <TextView android:id="@+id/tvMonthlyRent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/not_set"/>
                 </LinearLayout>
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingVertical="4dp">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Due Date" android:textColor="@color/homio_gray"/>
-                    <TextView android:id="@+id/tvDueDate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Not set"/>
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/due_date" android:textColor="@color/homio_gray"/>
+                    <TextView android:id="@+id/tvDueDate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/not_set"/>
                 </LinearLayout>
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingVertical="4dp">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Payment Date" android:textColor="@color/homio_gray"/>
-                    <TextView android:id="@+id/tvPaymentDate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—"/>
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/payment_date" android:textColor="@color/homio_gray"/>
+                    <TextView android:id="@+id/tvPaymentDate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/placeholder_dash"/>
                 </LinearLayout>
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingVertical="4dp">
-                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Deposit" android:textColor="@color/homio_gray"/>
-                    <TextView android:id="@+id/tvDeposit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Not set"/>
+                    <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/deposit" android:textColor="@color/homio_gray"/>
+                    <TextView android:id="@+id/tvDeposit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/not_set"/>
                 </LinearLayout>
             </LinearLayout>
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Payment History"
+                android:text="@string/payment_history"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"/>
 
@@ -115,11 +116,20 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="No payment history yet."
+                    android:text="@string/no_payment_history"
                     android:textColor="@color/homio_gray"
                     android:textSize="13sp"/>
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSubmitProof"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_submit_proof"
+                android:backgroundTint="@color/homio_purple"
+                android:textColor="@color/white"
+                android:layout_marginBottom="16dp"/>
 
         </LinearLayout>
     </ScrollView>

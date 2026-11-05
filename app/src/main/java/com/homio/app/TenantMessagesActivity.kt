@@ -2,27 +2,27 @@ package com.homio.app
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-// Single shared conversation thread for the prototype - not tied to a specific
-// tenant login yet. Real per-tenant conversations are a good next step for the final PoE.
-class TenantMessagesActivity : AppCompatActivity() {
+class TenantMessagesActivity : BaseActivity() {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var llMessagesList: LinearLayout
     private lateinit var scrollMessages: ScrollView
     private lateinit var etMessageInput: EditText
-    private lateinit var btnSendMessage: Button
+    private lateinit var btnSendMessage: ImageButton
+    private lateinit var btnRecordAudio: ImageButton
+    private var listener: ListenerRegistration? = null
 
     private val myRole = "tenant"
 
@@ -33,20 +33,30 @@ class TenantMessagesActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         llMessagesList = findViewById(R.id.llMessagesList)
         scrollMessages = findViewById(R.id.scrollMessages)
-        etMessageInput = findViewById(R.id.etMessageInput)
+
+
+        etMessageInput = findViewById(R.id.etMessage)
         btnSendMessage = findViewById(R.id.btnSendMessage)
+        btnRecordAudio = findViewById(R.id.btnRecordAudio)
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
         NavHelper.setupTenantNav(this, bottomNav, R.id.nav_messages)
 
         btnSendMessage.setOnClickListener { sendMessage() }
+        btnRecordAudio.setOnClickListener {
+            // Audio recording hook
+        }
+    }
 
+    override fun onStart() {
+        super.onStart()
         loadMessages()
     }
 
-    override fun onResume() {
-        super.onResume()
-        loadMessages()
+    override fun onStop() {
+        super.onStop()
+        listener?.remove()
+        listener = null
     }
 
     private fun sendMessage() {
@@ -62,23 +72,23 @@ class TenantMessagesActivity : AppCompatActivity() {
         db.collection("messages").add(message)
             .addOnSuccessListener {
                 etMessageInput.setText("")
-                loadMessages()
             }
     }
 
     private fun loadMessages() {
-        db.collection("messages")
+        listener?.remove()
+        listener = db.collection("messages")
             .orderBy("timestamp", Query.Direction.ASCENDING)
-            .get()
-            .addOnSuccessListener { snapshot ->
+            .addSnapshotListener { snapshot, error ->
+                if (error != null || snapshot == null) return@addSnapshotListener
                 llMessagesList.removeAllViews()
 
                 if (snapshot.isEmpty) {
                     val empty = TextView(this)
-                    empty.text = "No messages yet. Say hello!"
+                    empty.text = getString(R.string.no_messages)
                     empty.setPadding(0, 12, 0, 12)
                     llMessagesList.addView(empty)
-                    return@addOnSuccessListener
+                    return@addSnapshotListener
                 }
 
                 for (doc in snapshot.documents) {
@@ -97,7 +107,8 @@ class TenantMessagesActivity : AppCompatActivity() {
                     itemView.findViewById<TextView>(R.id.tvMessageTime).text = timeStr
 
                     if (!isMine) {
-                        itemView.findViewById<TextView>(R.id.tvSenderLabel)?.text = "Landlord"
+                        itemView.findViewById<TextView>(R.id.tvSenderLabel)?.text =
+                            getString(R.string.role_landlord)
                     }
 
                     llMessagesList.addView(itemView)

@@ -1,28 +1,30 @@
 package com.homio.app
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-// Single shared conversation thread for the prototype - not tied to a specific
-// tenant login yet. Real per-tenant conversations are a good next step for the final PoE.
-class LandlordMessagesActivity : AppCompatActivity() {
+class LandlordMessagesActivity : BaseActivity() {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var llMessagesList: LinearLayout
     private lateinit var scrollMessages: ScrollView
     private lateinit var etMessageInput: EditText
-    private lateinit var btnSendMessage: Button
+    private lateinit var btnSendMessage: ImageButton
+    private lateinit var btnRecordAudio: ImageButton
+    private lateinit var ibBack: ImageButton
+    private var listener: ListenerRegistration? = null
 
     private val myRole = "landlord"
 
@@ -33,20 +35,49 @@ class LandlordMessagesActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         llMessagesList = findViewById(R.id.llMessagesList)
         scrollMessages = findViewById(R.id.scrollMessages)
-        etMessageInput = findViewById(R.id.etMessageInput)
+
+        etMessageInput = findViewById(R.id.etMessage)
         btnSendMessage = findViewById(R.id.btnSendMessage)
+        btnRecordAudio = findViewById(R.id.btnRecordAudio)
+        ibBack = findViewById(R.id.ibBack)
+
+        ibBack.setOnClickListener {
+            val intent = Intent(this, LandlordDashboardActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+            finish()
+        }
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
-        NavHelper.setupLandlordNav(this, bottomNav, R.id.nav_messages_l)
+        if (bottomNav != null) {
+            try {
+                NavHelper.setupLandlordNav(this, bottomNav, R.id.nav_messages_l)
+            } catch (e: Exception) {
+            }
+        }
 
         btnSendMessage.setOnClickListener { sendMessage() }
+        btnRecordAudio.setOnClickListener {
+        }
+    }
 
+    override fun onStart() {
+        super.onStart()
         loadMessages()
     }
 
-    override fun onResume() {
-        super.onResume()
-        loadMessages()
+    override fun onStop() {
+        super.onStop()
+        listener?.remove()
+        listener = null
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val intent = Intent(this, LandlordDashboardActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        startActivity(intent)
+        finish()
+        return true
     }
 
     private fun sendMessage() {
@@ -62,28 +93,28 @@ class LandlordMessagesActivity : AppCompatActivity() {
         db.collection("messages").add(message)
             .addOnSuccessListener {
                 etMessageInput.setText("")
-                loadMessages()
             }
     }
 
     private fun loadMessages() {
-        db.collection("messages")
+        listener?.remove()
+        listener = db.collection("messages")
             .orderBy("timestamp", Query.Direction.ASCENDING)
-            .get()
-            .addOnSuccessListener { snapshot ->
+            .addSnapshotListener { snapshot, error ->
+                if (error != null || snapshot == null) return@addSnapshotListener
                 llMessagesList.removeAllViews()
 
                 if (snapshot.isEmpty) {
                     val empty = TextView(this)
-                    empty.text = "No messages yet. Say hello!"
+                    empty.text = getString(R.string.no_messages)
                     empty.setPadding(0, 12, 0, 12)
                     llMessagesList.addView(empty)
-                    return@addOnSuccessListener
+                    return@addSnapshotListener
                 }
 
                 for (doc in snapshot.documents) {
                     val text = doc.getString("text") ?: continue
-                    val senderRole = doc.getString("senderRole") ?: "tenant"
+                    val senderRole = doc.getString("senderRole" ) ?: "tenant"
                     val timestamp = doc.getTimestamp("timestamp")
                     val timeStr = if (timestamp != null) {
                         SimpleDateFormat("dd MMM, HH:mm", Locale.getDefault()).format(timestamp.toDate())
@@ -97,7 +128,8 @@ class LandlordMessagesActivity : AppCompatActivity() {
                     itemView.findViewById<TextView>(R.id.tvMessageTime).text = timeStr
 
                     if (!isMine) {
-                        itemView.findViewById<TextView>(R.id.tvSenderLabel)?.text = "Tenant"
+                        itemView.findViewById<TextView>(R.id.tvSenderLabel)?.text =
+                            getString(R.string.role_tenant)
                     }
 
                     llMessagesList.addView(itemView)

@@ -9,7 +9,7 @@
         android:id="@+id/ivLogo"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:contentDescription="Homio logo"
+        android:contentDescription="@string/cd_logo"
         android:src="@drawable/homio_logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

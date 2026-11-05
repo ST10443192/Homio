@@ -24,7 +24,7 @@
                 android:id="@+id/tvWelcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Good morning"
+                android:text="@string/greeting_default"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/homio_navy"/>
@@ -32,7 +32,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Here's an overview of your properties"
+                android:text="@string/landlord_dashboard_subtitle"
                 android:textSize="13sp"
                 android:textColor="@color/homio_gray"
                 android:layout_marginBottom="16dp"/>
@@ -53,8 +53,8 @@
                     android:background="@drawable/bg_card"
                     android:padding="14dp"
                     android:layout_marginEnd="6dp">
-                    <TextView android:id="@+id/tvPropertiesCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/homio_navy"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Properties" android:textSize="11sp" android:textColor="@color/homio_gray"/>
+                    <TextView android:id="@+id/tvPropertiesCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/placeholder_zero" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/homio_navy"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/nav_properties" android:textSize="11sp" android:textColor="@color/homio_gray"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -66,8 +66,8 @@
                     android:background="@drawable/bg_card"
                     android:padding="14dp"
                     android:layout_marginHorizontal="6dp">
-                    <TextView android:id="@+id/tvTenantsCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/homio_navy"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tenants" android:textSize="11sp" android:textColor="@color/homio_gray"/>
+                    <TextView android:id="@+id/tvTenantsCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/placeholder_zero" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/homio_navy"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/label_tenants" android:textSize="11sp" android:textColor="@color/homio_gray"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -79,8 +79,8 @@
                     android:background="@drawable/bg_card"
                     android:padding="14dp"
                     android:layout_marginStart="6dp">
-                    <TextView android:id="@+id/tvOpenRequestsCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/homio_navy"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Open Requests" android:textSize="11sp" android:textColor="@color/homio_gray"/>
+                    <TextView android:id="@+id/tvOpenRequestsCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/placeholder_zero" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/homio_navy"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/label_open_requests" android:textSize="11sp" android:textColor="@color/homio_gray"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -100,7 +100,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tenants"
+                    android:text="@string/label_tenants"
                     android:textStyle="bold"
                     android:textSize="15sp"
                     android:textColor="@color/homio_navy"/>
@@ -109,7 +109,37 @@
                     android:id="@+id/tvTenantsSummary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="No tenants yet — tap to add one"
+                    android:text="@string/tenants_summary_empty"
+                    android:textColor="@color/homio_gray"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <!-- Payments card -->
+            <LinearLayout
+                android:id="@+id/cardPayments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card"
+                android:padding="14dp"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/payments_title"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/homio_navy"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/payments_card_summary"
                     android:textColor="@color/homio_gray"
                     android:textSize="12sp"
                     android:layout_marginTop="4dp"/>
@@ -118,7 +148,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Recent Activity"
+                android:text="@string/recent_activity"
                 android:textStyle="bold"
                 android:textSize="15sp"
                 android:textColor="@color/homio_navy"
@@ -136,7 +166,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="No recent activity yet."
+                    android:text="@string/no_recent_activity"
                     android:textColor="@color/homio_gray"
                     android:textSize="13sp"/>
 
@@ -145,7 +175,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Upcoming"
+                android:text="@string/upcoming"
                 android:textStyle="bold"
                 android:textSize="15sp"
                 android:textColor="@color/homio_navy"
@@ -163,7 +193,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nothing upcoming."
+                    android:text="@string/nothing_upcoming"
                     android:textColor="@color/homio_gray"
                     android:textSize="13sp"/>
 

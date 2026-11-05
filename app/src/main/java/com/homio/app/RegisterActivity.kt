@@ -7,12 +7,11 @@ import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.homio.app.models.User
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : BaseActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
@@ -54,21 +53,21 @@ class RegisterActivity : AppCompatActivity() {
         val confirmPassword = etConfirmPassword.text.toString().trim()
 
         if (fullName.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.register_error_empty_fields), Toast.LENGTH_SHORT).show()
             return
         }
         if (password != confirmPassword) {
-            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.register_error_password_mismatch), Toast.LENGTH_SHORT).show()
             return
         }
         if (password.length < 6) {
-            Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.register_error_password_short), Toast.LENGTH_SHORT).show()
             return
         }
 
         val selectedId = rgUserType.checkedRadioButtonId
         if (selectedId == -1) {
-            Toast.makeText(this, "Please select Tenant or Landlord", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.register_error_select_type), Toast.LENGTH_SHORT).show()
             return
         }
         val userType = if (selectedId == R.id.rbLandlord) "landlord" else "tenant"
@@ -96,7 +95,7 @@ class RegisterActivity : AppCompatActivity() {
                     }
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Registration failed: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.register_failed, e.message), Toast.LENGTH_LONG).show()
             }
     }
 }

@@ -7,4 +7,5 @@
     <color name="homio_gray">#757575</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="homio_red">#E53935</color>
 </resources>

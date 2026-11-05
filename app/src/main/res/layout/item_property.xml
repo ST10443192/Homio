@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -14,7 +15,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="14sp"
-        android:text="Address"/>
+        tools:text="Address"/>
 
     <TextView
         android:id="@+id/tvPropertyType"
@@ -22,7 +23,7 @@
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:textColor="@color/homio_gray"
-        android:text="Type · Rooms"/>
+        tools:text="Type · Rooms"/>
 
     <TextView
         android:id="@+id/tvPropertyRent"
@@ -31,6 +32,6 @@
         android:textSize="13sp"
         android:textColor="@color/homio_purple"
         android:textStyle="bold"
-        android:text="R0.00 / month"/>
+        tools:text="R0.00 / month"/>
 
 </LinearLayout>

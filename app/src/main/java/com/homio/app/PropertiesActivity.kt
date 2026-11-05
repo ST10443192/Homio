@@ -5,14 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.NumberFormat
 import java.util.Locale
 
-class PropertiesActivity : AppCompatActivity() {
+class PropertiesActivity : BaseActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
@@ -50,7 +49,7 @@ class PropertiesActivity : AppCompatActivity() {
                 llList.removeAllViews()
                 if (snapshot.isEmpty) {
                     val empty = TextView(this)
-                    empty.text = "No properties added yet. Tap + Add Property to get started."
+                    empty.text = getString(R.string.no_properties)
                     llList.addView(empty)
                     return@addOnSuccessListener
                 }
@@ -58,16 +57,20 @@ class PropertiesActivity : AppCompatActivity() {
                 for (doc in snapshot.documents) {
                     val address = doc.getString("address") ?: ""
                     val type = doc.getString("propertyType") ?: ""
-                    val rooms = doc.getLong("rooms") ?: 0
+                    val rooms = (doc.getLong("rooms") ?: 0L).toInt()
                     val rent = doc.getDouble("rentAmount") ?: 0.0
 
                     val itemView = LayoutInflater.from(this)
                         .inflate(R.layout.item_property, llList, false)
 
                     itemView.findViewById<TextView>(R.id.tvPropertyAddress).text = address
-                    itemView.findViewById<TextView>(R.id.tvPropertyType).text = "$type · $rooms rooms"
+                    itemView.findViewById<TextView>(R.id.tvPropertyType).text = getString(
+                        R.string.item_subtitle,
+                        type,
+                        resources.getQuantityString(R.plurals.rooms_count, rooms, rooms)
+                    )
                     itemView.findViewById<TextView>(R.id.tvPropertyRent).text =
-                        "${currencyFormat.format(rent)} / month"
+                        getString(R.string.rent_per_month, currencyFormat.format(rent))
 
                     llList.addView(itemView)
                 }

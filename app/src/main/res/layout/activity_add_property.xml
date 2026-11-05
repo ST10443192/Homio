@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Property"
+            android:text="@string/add_property_title"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/homio_navy"
@@ -24,20 +24,20 @@
             android:id="@+id/etAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Address"/>
+            android:hint="@string/hint_address"/>
 
         <EditText
             android:id="@+id/etPropertyType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Property Type (e.g. Apartment, House)"
+            android:hint="@string/hint_property_type"
             android:layout_marginTop="16dp"/>
 
         <EditText
             android:id="@+id/etRooms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Number of Rooms"
+            android:hint="@string/hint_rooms"
             android:inputType="number"
             android:layout_marginTop="16dp"/>
 
@@ -45,7 +45,7 @@
             android:id="@+id/etRentAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Monthly Rent Amount (R)"
+            android:hint="@string/hint_rent_amount"
             android:inputType="numberDecimal"
             android:layout_marginTop="16dp"/>
 
@@ -53,14 +53,14 @@
             android:id="@+id/etDepositAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Deposit Amount (R)"
+            android:hint="@string/hint_deposit_amount"
             android:inputType="numberDecimal"
             android:layout_marginTop="16dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Property images/videos can be added in a later version."
+            android:text="@string/add_property_media_note"
             android:textSize="11sp"
             android:textColor="@color/homio_gray"
             android:layout_marginTop="8dp"/>
@@ -69,7 +69,7 @@
             android:id="@+id/btnSaveProperty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save Property"
+            android:text="@string/btn_save_property"
             android:backgroundTint="@color/homio_purple"
             android:textColor="@color/white"
             android:layout_marginTop="24dp"/>

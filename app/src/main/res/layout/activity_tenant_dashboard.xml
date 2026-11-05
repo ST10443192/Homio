@@ -25,7 +25,7 @@
                 android:id="@+id/tvWelcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Good morning"
+                android:text="@string/greeting_default"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/homio_navy"/>
@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Here's what's happening with your home"
+                android:text="@string/tenant_dashboard_subtitle"
                 android:textSize="13sp"
                 android:textColor="@color/homio_gray"
                 android:layout_marginBottom="16dp"/>
@@ -58,7 +58,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Next Rent Due"
+                        android:text="@string/next_rent_due"
                         android:textColor="@color/homio_gray"
                         android:textSize="13sp"/>
 
@@ -66,7 +66,7 @@
                         android:id="@+id/tvRentDueDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="No rent due yet"
+                        android:text="@string/no_rent_due"
                         android:textSize="13sp"
                         android:textColor="@color/homio_gray"/>
 
@@ -74,7 +74,7 @@
                         android:id="@+id/tvRentAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="R0.00"
+                        android:text="@string/placeholder_amount_zero"
                         android:textSize="26sp"
                         android:textStyle="bold"
                         android:textColor="@color/homio_navy"
@@ -101,7 +101,7 @@
                         android:layout_height="22dp"
                         android:src="@drawable/ic_nav_rent"
                         app:tint="@color/homio_purple"
-                        android:contentDescription="Rent due"/>
+                        android:contentDescription="@string/cd_rent_due"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -125,7 +125,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rent Status"
+                        android:text="@string/rent_status"
                         android:textColor="@color/homio_gray"
                         android:textSize="13sp"/>
 
@@ -140,7 +140,7 @@
                             android:id="@+id/tvRentStatus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="—"
+                            android:text="@string/placeholder_dash"
                             android:textStyle="bold"
                             android:textColor="@color/homio_gray"
                             android:textSize="18sp"/>
@@ -169,7 +169,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Open Request"
+                        android:text="@string/label_open_request"
                         android:textColor="@color/homio_gray"
                         android:textSize="13sp"/>
 
@@ -184,7 +184,7 @@
                             android:id="@+id/tvOpenRequestsCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0"
+                            android:text="@string/placeholder_zero"
                             android:textStyle="bold"
                             android:textColor="@color/homio_navy"
                             android:textSize="18sp"/>
@@ -200,7 +200,7 @@
                                 android:layout_height="14dp"
                                 android:src="@drawable/ic_nav_maintenance"
                                 app:tint="@color/homio_orange"
-                                android:contentDescription="Open requests"/>
+                                android:contentDescription="@string/cd_open_requests"/>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -208,7 +208,7 @@
                         android:id="@+id/tvViewRequests"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="View All"
+                        android:text="@string/view_all"
                         android:textSize="11sp"
                         android:textColor="@color/homio_purple"
                         android:layout_marginTop="2dp"/>
@@ -235,7 +235,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lease End"
+                        android:text="@string/lease_end"
                         android:textColor="@color/homio_gray"
                         android:textSize="13sp"/>
 
@@ -243,7 +243,7 @@
                         android:id="@+id/tvLeaseEndDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Not set"
+                        android:text="@string/not_set"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:textColor="@color/homio_navy"
@@ -271,7 +271,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Recent Activity"
+                    android:text="@string/recent_activity"
                     android:textStyle="bold"
                     android:textSize="15sp"
                     android:textColor="@color/homio_navy"/>
@@ -280,7 +280,7 @@
                     android:id="@+id/tvViewActivity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View All"
+                    android:text="@string/view_all"
                     android:textSize="12sp"
                     android:textColor="@color/homio_purple"/>
             </LinearLayout>
@@ -299,7 +299,7 @@
                     android:id="@+id/tvNoActivity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="No recent activity yet."
+                    android:text="@string/no_recent_activity"
                     android:textSize="13sp"
                     android:textColor="@color/homio_gray"/>
 

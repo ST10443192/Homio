@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -17,7 +18,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            // 10.0.2.2 is how the Android emulator reaches your computer
+            buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:3000/\"")
+        }
         release {
+            // Replace with your deployed HTTPS address before releasing
+            buildConfigField("String", "API_BASE_URL", "\"https://your-api.example.com/\"")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -37,6 +44,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -46,6 +54,15 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
+
+    // Google Sign-In
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
+
+    // Room (local SQLite database) + WorkManager (background sync)
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.work:work-runtime-ktx:2.9.1")
 
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
@@ -57,4 +74,9 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+
+    // REST API client
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 }

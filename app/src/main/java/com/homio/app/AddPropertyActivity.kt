@@ -3,12 +3,11 @@ package com.homio.app
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.homio.app.models.Property
 
-class AddPropertyActivity : AppCompatActivity() {
+class AddPropertyActivity : BaseActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
@@ -34,7 +33,7 @@ class AddPropertyActivity : AppCompatActivity() {
             val depositAmount = etDepositAmount.text.toString().trim().toDoubleOrNull() ?: 0.0
 
             if (address.isEmpty() || propertyType.isEmpty()) {
-                Toast.makeText(this, "Please fill in address and property type", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.error_fill_address_type), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -53,11 +52,11 @@ class AddPropertyActivity : AppCompatActivity() {
 
             newDocRef.set(property)
                 .addOnSuccessListener {
-                    Toast.makeText(this, "Property added", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.property_added), Toast.LENGTH_SHORT).show()
                     finish()
                 }
                 .addOnFailureListener { e ->
-                    Toast.makeText(this, "Failed to save: ${e.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(R.string.property_save_failed, e.message), Toast.LENGTH_LONG).show()
                 }
         }
     }

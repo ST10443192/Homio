@@ -1,14 +1,18 @@
+# Android Studio
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-/app/build
-/app/release
-*.apk
-*.aab
-/app/google-services.json
+
+# Local configuration
+local.properties
+
+# Build files
+.gradle/
+**/build/
+
+# Signing credentials
+*.jks
+*.keystore
+keystore.properties
+
+# Secrets
+.env

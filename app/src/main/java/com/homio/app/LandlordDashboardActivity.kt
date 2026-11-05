@@ -2,12 +2,13 @@ package com.homio.app
 
 import android.os.Bundle
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import android.content.Intent
+import android.view.View
 
-class LandlordDashboardActivity : AppCompatActivity() {
+class LandlordDashboardActivity : BaseActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
@@ -16,11 +17,20 @@ class LandlordDashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landlord_dashboard)
 
+        FirebaseAuth.getInstance().currentUser?.uid?.let {
+            (application as HomioApp).startNotifications(it, "landlord")
+        }
+        requestNotificationPermissionIfNeeded()
+
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
         NavHelper.setupLandlordNav(this, bottomNav, R.id.nav_home_l)
+
+        findViewById<View>(R.id.cardPayments).setOnClickListener {
+            startActivity(Intent(this, LandlordPaymentsActivity::class.java))
+        }
 
         val tvWelcome = findViewById<TextView>(R.id.tvWelcome)
         val tvPropertiesCount = findViewById<TextView>(R.id.tvPropertiesCount)
@@ -32,8 +42,12 @@ class LandlordDashboardActivity : AppCompatActivity() {
         if (uid != null) {
             db.collection("users").document(uid).get()
                 .addOnSuccessListener { doc ->
-                    val name = doc.getString("fullName") ?: "there"
-                    tvWelcome.text = "Good morning, $name"
+                    val name = doc.getString("fullName")
+                    tvWelcome.text = if (name.isNullOrEmpty()) {
+                        getString(R.string.greeting_default)
+                    } else {
+                        getString(R.string.greeting_with_name, name)
+                    }
                 }
 
             db.collection("properties")
@@ -48,7 +62,7 @@ class LandlordDashboardActivity : AppCompatActivity() {
             db.collection("maintenance")
                 .get()
                 .addOnSuccessListener { snapshot ->
-                    val openCount = snapshot.documents.count { it.getString("status") != "Completed" }
+                    val openCount = snapshot.documents.count { it.getString("status") != Labels.STATUS_COMPLETED }
                     tvOpenRequestsCount.text = openCount.toString()
                 }
         }

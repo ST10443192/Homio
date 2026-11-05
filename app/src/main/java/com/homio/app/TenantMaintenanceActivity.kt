@@ -9,30 +9,34 @@ import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.homio.app.models.MaintenanceRequest
+import com.google.firebase.firestore.ListenerRegistration
+import com.homio.app.data.MaintenanceEntity
+import com.homio.app.data.MaintenanceRepository
+import com.homio.app.data.NetworkUtil
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class TenantMaintenanceActivity : AppCompatActivity() {
+class TenantMaintenanceActivity : BaseActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var db: FirebaseFirestore
+    private lateinit var repo: MaintenanceRepository
     private lateinit var llList: LinearLayout
-
-    private val categories = arrayOf("Plumbing", "Electrical", "Appliance", "Structural", "Other")
+    private var syncListener: ListenerRegistration? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tenant_maintenance)
 
         auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
+        repo = MaintenanceRepository.get(this)
         llList = findViewById(R.id.llMaintenanceList)
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
@@ -42,55 +46,70 @@ class TenantMaintenanceActivity : AppCompatActivity() {
             showReportDialog()
         }
 
-        loadMyRequests()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        loadMyRequests()
-    }
-
-    private fun loadMyRequests() {
-        val uid = auth.currentUser?.uid ?: return
-        db.collection("maintenance")
-            .whereEqualTo("tenantId", uid)
-            .get()
-            .addOnSuccessListener { snapshot ->
-                llList.removeAllViews()
-                if (snapshot.isEmpty) {
-                    val empty = TextView(this)
-                    empty.text = "No maintenance requests yet."
-                    empty.setTextColor(ContextCompat.getColor(this, R.color.homio_gray))
-                    llList.addView(empty)
-                    return@addOnSuccessListener
-                }
-                for (doc in snapshot.documents) {
-                    val title = doc.getString("title") ?: "Untitled"
-                    val category = doc.getString("category") ?: ""
-                    val status = doc.getString("status") ?: "Submitted"
-                    val timestamp = doc.getTimestamp("createdDate")
-                    val dateStr = if (timestamp != null) {
-                        SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(timestamp.toDate())
-                    } else ""
-
-                    val itemView = LayoutInflater.from(this)
-                        .inflate(R.layout.item_maintenance_request, llList, false)
-
-                    itemView.findViewById<TextView>(R.id.tvItemTitle).text = title
-                    itemView.findViewById<TextView>(R.id.tvItemSubtitle).text = "$category · $dateStr"
-
-                    val statusView = itemView.findViewById<TextView>(R.id.tvItemStatus)
-                    statusView.text = status
-                    val color = when (status) {
-                        "Completed" -> R.color.homio_green
-                        "In Progress" -> R.color.homio_orange
-                        else -> R.color.homio_purple
-                    }
-                    statusView.backgroundTintList = ContextCompat.getColorStateList(this, color)
-
-                    llList.addView(itemView)
+        // The list always comes from Room, so it works offline and updates instantly
+        val uid = auth.currentUser?.uid
+        if (uid != null) {
+            lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    repo.observeForTenant(uid).collect { render(it) }
                 }
             }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // While online, Firestore keeps the Room cache up to date
+        syncListener?.remove()
+        syncListener = auth.currentUser?.uid?.let { repo.startSync(it) }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        syncListener?.remove()
+        syncListener = null
+    }
+
+    private fun render(items: List<MaintenanceEntity>) {
+        llList.removeAllViews()
+        if (items.isEmpty()) {
+            val empty = TextView(this)
+            empty.text = getString(R.string.no_maintenance_requests)
+            empty.setTextColor(ContextCompat.getColor(this, R.color.homio_gray))
+            llList.addView(empty)
+            return
+        }
+
+        for (item in items) {
+            val dateStr = if (item.createdDate > 0) {
+                SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date(item.createdDate))
+            } else ""
+
+            var subtitle = getString(
+                R.string.item_subtitle, Labels.category(this, item.category), dateStr
+            )
+            if (item.pendingSync) {
+                subtitle = getString(R.string.item_subtitle, subtitle, getString(R.string.waiting_to_sync))
+            }
+
+            val itemView = LayoutInflater.from(this)
+                .inflate(R.layout.item_maintenance_request, llList, false)
+
+            itemView.findViewById<TextView>(R.id.tvItemTitle).text =
+                item.title.ifEmpty { getString(R.string.untitled) }
+            itemView.findViewById<TextView>(R.id.tvItemSubtitle).text = subtitle
+
+            val statusView = itemView.findViewById<TextView>(R.id.tvItemStatus)
+            statusView.text = Labels.status(this, item.status)
+            val color = when (item.status) {
+                Labels.STATUS_COMPLETED -> R.color.homio_green
+                Labels.STATUS_IN_PROGRESS -> R.color.homio_orange
+                else -> R.color.homio_purple
+            }
+            statusView.backgroundTintList = ContextCompat.getColorStateList(this, color)
+
+            llList.addView(itemView)
+        }
     }
 
     private fun showReportDialog() {
@@ -98,42 +117,43 @@ class TenantMaintenanceActivity : AppCompatActivity() {
         val etTitle = dialogView.findViewById<EditText>(R.id.etReportTitle)
         val etDescription = dialogView.findViewById<EditText>(R.id.etReportDescription)
         val spCategory = dialogView.findViewById<Spinner>(R.id.spCategory)
-        spCategory.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, categories)
+        spCategory.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            Labels.categoryLabels(this)
+        )
 
         AlertDialog.Builder(this)
-            .setTitle("Report a Problem")
+            .setTitle(R.string.dialog_report_title)
             .setView(dialogView)
-            .setPositiveButton("Submit") { _, _ ->
+            .setPositiveButton(R.string.action_submit) { _, _ ->
                 val title = etTitle.text.toString().trim()
                 val description = etDescription.text.toString().trim()
-                val category = spCategory.selectedItem?.toString() ?: "Other"
+                // Save the English key, not the translated label, so data stays consistent for every language
+                val category = Labels.CATEGORY_KEYS.getOrElse(spCategory.selectedItemPosition) {
+                    Labels.CATEGORY_OTHER
+                }
 
                 if (title.isEmpty()) {
-                    Toast.makeText(this, "Please enter a title", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.error_enter_title), Toast.LENGTH_SHORT).show()
                     return@setPositiveButton
                 }
 
                 val uid = auth.currentUser?.uid ?: return@setPositiveButton
-                val newDocRef = db.collection("maintenance").document()
-                val request = MaintenanceRequest(
-                    requestId = newDocRef.id,
-                    tenantId = uid,
-                    title = title,
-                    description = description,
-                    category = category,
-                    status = "Submitted",
-                    createdDate = com.google.firebase.Timestamp(Date())
-                )
-                newDocRef.set(request)
-                    .addOnSuccessListener {
-                        Toast.makeText(this, "Request submitted", Toast.LENGTH_SHORT).show()
-                        loadMyRequests()
+                lifecycleScope.launch {
+                    // Saved to Room straight away; WorkManager uploads it when online
+                    repo.createRequest(uid, title, description, category)
+                    val message = if (NetworkUtil.isOnline(this@TenantMaintenanceActivity)) {
+                        R.string.request_submitted
+                    } else {
+                        R.string.request_saved_offline
                     }
-                    .addOnFailureListener { e ->
-                        Toast.makeText(this, "Failed: ${e.message}", Toast.LENGTH_LONG).show()
-                    }
+                    Toast.makeText(
+                        this@TenantMaintenanceActivity, getString(message), Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
-            .setNegativeButton("Cancel", null)
+            .setNegativeButton(R.string.action_cancel, null)
             .show()
     }
 }

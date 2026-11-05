@@ -19,12 +19,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Messages"
+            android:text="@string/nav_messages"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/homio_navy"
             android:layout_marginBottom="12dp"/>
 
+        <!-- Messages Scroll View -->
         <ScrollView
             android:id="@+id/scrollMessages"
             android:layout_width="match_parent"
@@ -38,35 +39,58 @@
                 android:orientation="vertical"/>
         </ScrollView>
 
+        <!-- Bottom Chat Bubble Input Bar -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginTop="10dp">
+            android:padding="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_card">
 
+            <!-- Audio Recording Button -->
+            <ImageButton
+                android:id="@+id/btnRecordAudio"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_mic"
+                android:contentDescription="@string/cdRecordAudio" />
+
+            <!-- Message Input Field -->
             <EditText
-                android:id="@+id/etMessageInput"
+                android:id="@+id/etMessage"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:hint="Type a message..."
-                android:background="@drawable/bg_card"
-                android:padding="12dp"
-                android:maxLines="4"/>
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/hintTypeMessage"
+                android:inputType="textLongMessage|textCapSentences"
+                android:maxLines="4"
+                android:background="@android:color/transparent"
+                android:padding="12dp" />
 
-            <Button
+            <!-- Send Button -->
+            <ImageButton
                 android:id="@+id/btnSendMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Send"
-                android:backgroundTint="@color/homio_purple"
-                android:textColor="#FFFFFF"
-                android:layout_marginStart="8dp"/>
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_send"
+                android:contentDescription="@string/cdSendMessage" />
+
         </LinearLayout>
 
     </LinearLayout>
 
-    <include layout="@layout/nav_bar_tenant" />
+    <!-- Bottom Navigation Bar -->
+    <include
+        android:id="@+id/bottomNav"
+        layout="@layout/nav_bar_tenant"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

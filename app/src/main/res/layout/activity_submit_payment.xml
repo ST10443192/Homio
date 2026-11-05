@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F6FA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/submit_payment_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/homio_navy"
+            android:layout_marginBottom="20dp"/>
+
+        <EditText
+            android:id="@+id/etAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_payment_amount"
+            android:inputType="numberDecimal"/>
+
+        <EditText
+            android:id="@+id/etMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_payment_month"
+            android:inputType="text"
+            android:maxLength="7"
+            android:layout_marginTop="16dp"/>
+
+        <EditText
+            android:id="@+id/etReference"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_payment_reference"
+            android:inputType="text"
+            android:maxLength="60"
+            android:layout_marginTop="16dp"/>
+
+        <EditText
+            android:id="@+id/etNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_payment_note"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:maxLength="300"
+            android:gravity="top"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/btnChoosePhoto"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_choose_photo"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/tvPhotoStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/photo_none"
+            android:textSize="12sp"
+            android:textColor="@color/homio_gray"
+            android:layout_marginTop="8dp"/>
+
+        <ImageView
+            android:id="@+id/ivProofPreview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/cd_proof_preview"
+            android:visibility="gone"
+            android:layout_marginTop="8dp"/>
+
+        <ProgressBar
+            android:id="@+id/progressSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:indeterminate="true"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/btnSubmitPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_submit"
+            android:backgroundTint="@color/homio_purple"
+            android:textColor="@color/white"
+            android:layout_marginTop="24dp"/>
+    </LinearLayout>
+</ScrollView>

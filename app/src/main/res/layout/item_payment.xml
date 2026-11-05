@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_card"
+    android:padding="14dp"
+    android:layout_marginBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvPaymentTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                tools:text="Tenant name"/>
+
+            <TextView
+                android:id="@+id/tvPaymentSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/homio_gray"
+                tools:text="2026-11 · R8,500.00"/>
+
+            <TextView
+                android:id="@+id/tvPaymentReference"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/homio_gray"
+                android:visibility="gone"
+                tools:text="Ref: EFT123"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvPaymentStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"
+            android:background="@drawable/bg_pill"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            tools:text="Pending review"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvRejectReason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textSize="12sp"
+        android:textColor="@color/homio_red"
+        android:visibility="gone"
+        tools:text="Reason: Amount does not match"/>
+
+    <LinearLayout
+        android:id="@+id/llPaymentActions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btnViewProof"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="@string/btn_view_proof"
+            android:textSize="11sp"
+            android:maxLines="2"/>
+
+        <Button
+            android:id="@+id/btnApprove"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:text="@string/btn_approve"
+            android:textSize="11sp"
+            android:maxLines="2"
+            android:backgroundTint="@color/homio_green"/>
+
+        <Button
+            android:id="@+id/btnReject"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/btn_reject"
+            android:textSize="11sp"
+            android:maxLines="2"
+            android:backgroundTint="@color/homio_red"/>
+    </LinearLayout>
+
+</LinearLayout>

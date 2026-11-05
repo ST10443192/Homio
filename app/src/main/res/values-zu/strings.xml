@@ -1,13 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="settings_title">Izilungiselelo</string>
+
+    <!-- Common -->
+    <string name="action_cancel">Khansela</string>
+    <string name="action_submit">Ngenisa</string>
+    <string name="action_send">Thumela</string>
+    <string name="view_all">Buka konke</string>
+    <string name="role_tenant">Umqashi</string>
+    <string name="role_landlord">Umnikazi wendlu</string>
+    <string name="not_set">Akusethiwe</string>
+    <string name="untitled">Akunasihloko</string>
+
+    <!-- Accessibility descriptions -->
+    <string name="cd_logo">Uphawu lwe-Homio</string>
+    <string name="cd_rent_due">Irenti okufanele ikhokhwe</string>
+    <string name="cd_open_requests">Izicelo ezivuliwe</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_home">Ikhaya</string>
+    <string name="nav_rent">Irenti</string>
+    <string name="nav_properties">Izindlu</string>
+    <string name="nav_maintenance">Ukulungisa</string>
+    <string name="nav_messages">Imiyalezo</string>
+    <string name="nav_settings">Izilungiselelo</string>
+
+    <!-- Login / Register -->
+    <string name="hint_email">I-imeyili</string>
+    <string name="hint_password">Iphasiwedi</string>
+    <string name="hint_confirm_password">Qinisekisa iphasiwedi</string>
     <string name="hint_full_name">Igama Eliphelele</string>
+    <string name="btn_login">Ngena</string>
+    <string name="btn_sign_up">Bhalisa</string>
+    <string name="link_go_to_register">Awunayo i-akhawunti? Bhalisa</string>
+    <string name="link_go_to_login">Usunayo i-akhawunti? Ngena</string>
+    <string name="label_i_am_a">Ngingu:</string>
+    <string name="login_error_empty">Sicela ufake i-imeyili nephasiwedi</string>
+    <string name="login_failed">Ukungena kuhlulekile: %1$s</string>
+    <string name="register_error_empty_fields">Sicela ugcwalise zonke izinkambu</string>
+    <string name="register_error_password_mismatch">Amaphasiwedi awafani</string>
+    <string name="register_error_password_short">Iphasiwedi kumele ibe okungenani nezinhlamvu eziyi-6</string>
+    <string name="register_error_select_type">Sicela ukhethe Umqashi noma Umnikazi wendlu</string>
+    <string name="register_failed">Ukubhalisa kuhlulekile: %1$s</string>
+
+    <!-- Dashboards -->
+    <string name="greeting_default">Sawubona</string>
+    <string name="greeting_with_name">Sawubona, %1$s</string>
+    <string name="tenant_dashboard_subtitle">Nakhu okwenzekayo ekhaya lakho</string>
+    <string name="landlord_dashboard_subtitle">Nansi indlela ebukeka ngayo yonke impahla yakho</string>
+    <string name="label_tenants">Abaqashi</string>
+    <string name="label_open_requests">Izicelo ezivuliwe</string>
+    <string name="label_open_request">Isicelo esivuliwe</string>
+    <string name="tenants_summary_empty">Abekho abaqashi okwamanje — thinta ukuze wengeze</string>
+    <string name="recent_activity">Okwenzekile kamuva</string>
+    <string name="no_recent_activity">Akukho okwenzekile kamuva.</string>
+    <string name="upcoming">Okuzayo</string>
+    <string name="nothing_upcoming">Akukho okuzayo.</string>
+    <string name="next_rent_due">Irenti elandelayo</string>
+    <string name="no_rent_due">Akukho irenti okufanele ikhokhwe okwamanje</string>
+    <string name="rent_status">Isimo sorenti</string>
+    <string name="lease_end">Ukuphela kwenkontileka</string>
+
+    <!-- Rent screen -->
+    <string name="current_month">Inyanga yamanje</string>
+    <string name="no_payment_recorded">Akukho inkokhelo erekhodiwe okwamanje</string>
+    <string name="rent_details">Imininingwane yerenti</string>
+    <string name="monthly_rent">Irenti yenyanga</string>
+    <string name="due_date">Usuku lokukhokha</string>
+    <string name="payment_date">Usuku lokukhokha okwenziwe</string>
+    <string name="deposit">Idiphozithi</string>
+    <string name="payment_history">Umlando wezinkokhelo</string>
+    <string name="no_payment_history">Alukho umlando wezinkokhelo okwamanje.</string>
+
+    <!-- Maintenance -->
+    <string name="maintenance_requests_title">Izicelo zokulungisa</string>
+    <string name="btn_report">+ Bika</string>
+    <string name="no_maintenance_requests">Azikho izicelo zokulungisa okwamanje.</string>
+    <string name="dialog_report_title">Bika inkinga</string>
+    <string name="hint_issue_title">Isihloko senkinga (isib. Ithephu yasekhishini iyavuza)</string>
+    <string name="hint_issue_description">Chaza inkinga</string>
+    <string name="error_enter_title">Sicela ufake isihloko</string>
+    <string name="request_submitted">Isicelo sithunyelwe</string>
+    <string name="request_failed">Kuhlulekile: %1$s</string>
+    <string name="btn_mark_complete">Maka kuqediwe</string>
+    <string name="status_submitted">Ithunyelwe</string>
+    <string name="status_in_progress">Iyaqhubeka</string>
+    <string name="status_completed">Iqediwe</string>
+    <string name="category_plumbing">Amapayipi</string>
+    <string name="category_electrical">Ugesi</string>
+    <string name="category_appliance">Amathuluzi asekhaya</string>
+    <string name="category_structural">Isakhiwo</string>
+    <string name="category_other">Okunye</string>
+
+    <!-- Properties -->
+    <string name="btn_add_property">+ Engeza indlu</string>
+    <string name="no_properties">Azikho izindlu ezingeziwe okwamanje. Thinta + Engeza indlu ukuze uqale.</string>
+    <string name="add_property_title">Engeza indlu</string>
+    <string name="hint_address">Ikheli</string>
+    <string name="hint_property_type">Uhlobo lwendlu (isib. Iflethi, Indlu)</string>
+    <string name="hint_rooms">Inani lamakamelo</string>
+    <string name="hint_rent_amount">Inani lerenti yenyanga (R)</string>
+    <string name="hint_deposit_amount">Inani ledipozithi (R)</string>
+    <string name="add_property_media_note">Izithombe namavidiyo endlu kuzongezwa enguqulweni ezayo.</string>
+    <string name="btn_save_property">Gcina indlu</string>
+    <string name="error_fill_address_type">Sicela ugcwalise ikheli nohlobo lwendlu</string>
+    <string name="property_added">Indlu ingeziwe</string>
+    <string name="property_save_failed">Kuhlulekile ukugcina: %1$s</string>
+    <string name="rent_per_month">%1$s / inyanga</string>
+    <plurals name="rooms_count">
+        <item quantity="one">%d ikamelo</item>
+        <item quantity="other">%d amakamelo</item>
+    </plurals>
+
+    <!-- Messages -->
+    <string name="titleMessages">Umlayezo</string>
+    <string name="hintTypeMessage">Thayipha umlayezo...</string>
+    <string name="cdRecordAudio">Qopha umsindo</string>
+    <string name="cdSendMessage">Thumela umlayezo</string>
+    <string name="chatErrorEmpty">Umlayezo awukwazi ukuba yize</string>
+    <string name="no_messages">Azikho imiyalezo okwamanje</string>
+    <!-- Settings -->
+    <string name="settings_title">Izilungiselelo</string>
     <string name="hint_phone">Inombolo Yocingo</string>
     <string name="btn_save_changes">Gcina Izinguquko</string>
     <string name="btn_logout">Phuma</string>
     <string name="label_language">Ulimi</string>
-    <string name="lang_english">IsiNgisi</string>
-    <string name="lang_zulu">isiZulu</string>
     <string name="settings_saved">Izilungiselelo zigciniwe</string>
     <string name="settings_save_failed">Yehlulekile ukugcina</string>
+
+    <string name="notif_channel_requests_name">Izicelo zokulungisa</string>
+    <string name="notif_channel_requests_desc">Izicelo zokulungisa ezintsha nezibuyekeziwe</string>
+    <string name="notif_channel_messages_name">Imiyalezo</string>
+    <string name="notif_channel_messages_desc">Imiyalezo emisha</string>
+    <string name="notif_new_request_title">Isicelo esisha sokulungisa</string>
+    <string name="notif_status_title">Isibuyekezo sokulungisa</string>
+    <string name="notif_status_text">“%1$s” — isimo: %2$s</string>
+    <string name="notif_message_from_tenant">Umlayezo omusha ovela kumqashi</string>
+    <string name="notif_message_from_landlord">Umlayezo omusha ovela kumnikazi wendlu</string>
+
+    <string name="request_saved_offline">Kugcinwe ngaphandle kwe-inthanethi — kuzovumelanisa uma ubuyela ku-inthanethi</string>
+    <string name="waiting_to_sync">Kulindele ukuvumelanisa</string>
+
+    <string name="btn_submit_proof">Thumela ubufakazi bokukhokha</string>
+    <string name="submit_payment_title">Ubufakazi bokukhokha</string>
+    <string name="hint_payment_amount">Inani elikhokhiwe (R)</string>
+    <string name="hint_payment_month">Inyanga ekhokhelwe (isib. 2026-11)</string>
+    <string name="hint_payment_reference">Inkomba yenkokhelo (akunyanzelekile)</string>
+    <string name="hint_payment_note">Inothi (akunyanzelekile)</string>
+    <string name="btn_choose_photo">Khetha isithombe</string>
+    <string name="btn_change_photo">Shintsha isithombe</string>
+    <string name="photo_none">Awukakhethi isithombe</string>
+    <string name="photo_ready">Isithombe sikulungele · %1$d KB</string>
+    <string name="cd_proof_preview">Ukubuka kuqala ubufakazi bakho bokukhokha</string>
+    <string name="error_payment_amount">Faka inani elivumelekile</string>
+    <string name="error_payment_month">Sebenzisa uhlobo lwe-YYYY-MM, isib. 2026-11</string>
+    <string name="error_payment_photo">Sicela ukhethe isithombe sobufakazi bakho bokukhokha</string>
+    <string name="error_photo_unreadable">Isithombe asikwazanga ukufundeka. Zama esinye.</string>
+    <string name="payment_submitted">Ubufakazi bokukhokha buthunyelwe</string>
+    <string name="payment_failed">Ayikwazanga ukuthumela: %1$s</string>
+    <string name="action_failed">Kukhona okungahambanga kahle: %1$s</string>
+    <string name="error_no_connection">Alukho uxhumano. Hlola i-inthanethi yakho uphinde uzame.</string>
+    <string name="payment_load_failed">Ayikwazanga ukulayisha izinkokhelo</string>
+    <string name="payment_status_pending">Kulindele ukubuyekezwa</string>
+    <string name="payment_status_verified">Kuqinisekisiwe</string>
+    <string name="payment_status_rejected">Kwenqatshiwe</string>
+    <string name="payment_reference_line">Inkomba: %1$s</string>
+    <string name="payment_rejected_reason">Isizathu: %1$s</string>
+    <string name="payments_title">Izinkokhelo</string>
+    <string name="payments_card_summary">Buyekeza ubufakazi bokukhokha babaqashi</string>
+    <string name="no_payments">Azikho izinkokhelo ezithunyelwe okwamanje.</string>
+    <string name="btn_view_proof">Buka ubufakazi</string>
+    <string name="btn_approve">Vuma</string>
+    <string name="btn_reject">Yenqaba</string>
+    <string name="btn_back">Emuva</string>
+    <string name="action_close">Vala</string>
+    <string name="dialog_reject_title">Yenqaba inkokhelo</string>
+    <string name="hint_reject_reason">Isizathu (siyadingeka)</string>
+    <string name="error_reject_reason">Sicela unikeze isizathu</string>
+    <string name="payment_approved">Inkokhelo ivunyiwe</string>
+    <string name="payment_rejected">Inkokhelo inqatshiwe</string>
+    <string name="proof_load_failed">Ubufakazi abukwazanga ukulayishwa</string>
+
+    <string name="notif_channel_payments_name">Izinkokhelo</string>
+    <string name="notif_channel_payments_desc">Ubufakazi bokukhokha obusha nobubuyekeziwe</string>
+    <string name="notif_new_payment_title">Ubufakazi obusha bokukhokha</string>
+    <string name="notif_payment_update_title">Isibuyekezo senkokhelo</string>
+    <string name="notif_payment_verified_text">Inkokhelo yakho ye-%1$s iqinisekisiwe</string>
+    <string name="notif_payment_rejected_plain">Inkokhelo yakho ye-%1$s yenqatshiwe</string>
+    <string name="notif_payment_rejected_text">Inkokhelo yakho ye-%1$s yenqatshiwe: %2$s</string>
+
 </resources>

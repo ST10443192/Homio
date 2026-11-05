@@ -1,14 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="settings_title">Settings</string>
+
+    <!-- App -->
+    <string name="app_name" translatable="false">Homio</string>
+
+    <!-- Language names -->
+    <string name="lang_english" translatable="false">English</string>
+    <string name="lang_afrikaans" translatable="false">Afrikaans</string>
+    <string name="lang_zulu" translatable="false">isiZulu</string>
+
+    <!-- Placeholders -->
+    <string name="placeholder_zero" translatable="false">0</string>
+    <string name="placeholder_amount_zero" translatable="false">R0.00</string>
+    <string name="placeholder_dash" translatable="false">—</string>
+    <string name="item_subtitle" translatable="false">%1$s · %2$s</string>
+
+    <!-- Common -->
+    <string name="action_cancel">Cancel</string>
+    <string name="action_submit">Submit</string>
+    <string name="action_send">Send</string>
+    <string name="view_all">View All</string>
+    <string name="role_tenant">Tenant</string>
+    <string name="role_landlord">Landlord</string>
+    <string name="not_set">Not set</string>
+    <string name="untitled">Untitled</string>
+
+    <!-- Accessibility descriptions -->
+    <string name="cd_logo">Homio logo</string>
+    <string name="cd_rent_due">Rent due</string>
+    <string name="cd_open_requests">Open requests</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_rent">Rent</string>
+    <string name="nav_properties">Properties</string>
+    <string name="nav_maintenance">Maintenance</string>
+    <string name="nav_messages">Messages</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Login / Register -->
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm Password</string>
     <string name="hint_full_name">Full Name</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_sign_up">Sign Up</string>
+    <string name="link_go_to_register">Don\'t have an account? Sign Up</string>
+    <string name="link_go_to_login">Already have an account? Login</string>
+    <string name="label_i_am_a">I am a:</string>
+    <string name="login_error_empty">Please enter both email and password</string>
+    <string name="login_failed">Login failed: %1$s</string>
+    <string name="register_error_empty_fields">Please fill in all fields</string>
+    <string name="register_error_password_mismatch">Passwords do not match</string>
+    <string name="register_error_password_short">Password must be at least 6 characters</string>
+    <string name="register_error_select_type">Please select Tenant or Landlord</string>
+    <string name="register_failed">Registration failed: %1$s</string>
+
+    <!-- Dashboards -->
+    <string name="greeting_default">Good morning</string>
+    <string name="greeting_with_name">Good morning, %1$s</string>
+    <string name="tenant_dashboard_subtitle">Here\'s what\'s happening with your home</string>
+    <string name="landlord_dashboard_subtitle">Here\'s an overview of your properties</string>
+    <string name="label_tenants">Tenants</string>
+    <string name="label_open_requests">Open Requests</string>
+    <string name="label_open_request">Open Request</string>
+    <string name="tenants_summary_empty">No tenants yet — tap to add one</string>
+    <string name="recent_activity">Recent Activity</string>
+    <string name="no_recent_activity">No recent activity yet.</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="nothing_upcoming">Nothing upcoming.</string>
+    <string name="next_rent_due">Next Rent Due</string>
+    <string name="no_rent_due">No rent due yet</string>
+    <string name="rent_status">Rent Status</string>
+    <string name="lease_end">Lease End</string>
+
+    <!-- Rent screen -->
+    <string name="current_month">Current Month</string>
+    <string name="no_payment_recorded">No payment recorded yet</string>
+    <string name="rent_details">Rent Details</string>
+    <string name="monthly_rent">Monthly Rent</string>
+    <string name="due_date">Due Date</string>
+    <string name="payment_date">Payment Date</string>
+    <string name="deposit">Deposit</string>
+    <string name="payment_history">Payment History</string>
+    <string name="no_payment_history">No payment history yet.</string>
+
+    <!-- Maintenance -->
+    <string name="maintenance_requests_title">Maintenance Requests</string>
+    <string name="btn_report">+ Report</string>
+    <string name="no_maintenance_requests">No maintenance requests yet.</string>
+    <string name="dialog_report_title">Report a Problem</string>
+    <string name="hint_issue_title">Issue Title (e.g. Kitchen Tap Leak)</string>
+    <string name="hint_issue_description">Describe the problem</string>
+    <string name="error_enter_title">Please enter a title</string>
+    <string name="request_submitted">Request submitted</string>
+    <string name="request_failed">Failed: %1$s</string>
+    <string name="btn_mark_complete">Mark Complete</string>
+    <string name="status_submitted">Submitted</string>
+    <string name="status_in_progress">In Progress</string>
+    <string name="status_completed">Completed</string>
+    <string name="category_plumbing">Plumbing</string>
+    <string name="category_electrical">Electrical</string>
+    <string name="category_appliance">Appliance</string>
+    <string name="category_structural">Structural</string>
+    <string name="category_other">Other</string>
+
+    <!-- Properties -->
+    <string name="btn_add_property">+ Add Property</string>
+    <string name="no_properties">No properties added yet. Tap + Add Property to get started.</string>
+    <string name="add_property_title">Add Property</string>
+    <string name="hint_address">Address</string>
+    <string name="hint_property_type">Property Type (e.g. Apartment, House)</string>
+    <string name="hint_rooms">Number of Rooms</string>
+    <string name="hint_rent_amount">Monthly Rent Amount (R)</string>
+    <string name="hint_deposit_amount">Deposit Amount (R)</string>
+    <string name="add_property_media_note">Property images/videos can be added in a later version.</string>
+    <string name="btn_save_property">Save Property</string>
+    <string name="error_fill_address_type">Please fill in address and property type</string>
+    <string name="property_added">Property added</string>
+    <string name="property_save_failed">Failed to save: %1$s</string>
+    <string name="rent_per_month">%1$s / month</string>
+    <plurals name="rooms_count">
+        <item quantity="one">%d room</item>
+        <item quantity="other">%d rooms</item>
+    </plurals>
+
+    <!-- Messages  -->
+
+    <string name="titleMessages">Messages</string>
+    <string name="hintTypeMessage">Type a message...</string>
+    <string name="cdRecordAudio">Record Audio</string>
+    <string name="cdSendMessage">Send Message</string>
+    <string name="chatErrorEmpty">Message cannot be empty</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
     <string name="hint_phone">Phone Number</string>
     <string name="btn_save_changes">Save Changes</string>
     <string name="btn_logout">Log Out</string>
     <string name="label_language">Language</string>
-    <string name="lang_english">English</string>
-    <string name="lang_zulu">isiZulu</string>
     <string name="settings_saved">Settings saved</string>
     <string name="settings_save_failed">Failed to save</string>
-    <string name="lang_setswana">Setswana</string>
+    <string name="no_messages">No messages yet</string>
+    <string name="notif_channel_requests_name">Maintenance requests</string>
+    <string name="notif_channel_requests_desc">New and updated maintenance requests</string>
+    <string name="notif_channel_messages_name">Messages</string>
+    <string name="notif_channel_messages_desc">New messages</string>
+    <string name="notif_new_request_title">New maintenance request</string>
+    <string name="notif_status_title">Maintenance update</string>
+    <string name="notif_status_text">“%1$s” — status: %2$s</string>
+    <string name="notif_message_from_tenant">New message from tenant</string>
+    <string name="notif_message_from_landlord">New message from landlord</string>
+
+    <string name="request_saved_offline">Saved offline — it will sync when you\'re back online</string>
+    <string name="waiting_to_sync">Waiting to sync</string>
+
+    <string name="btn_submit_proof">Submit Proof of Payment</string>
+    <string name="submit_payment_title">Proof of Payment</string>
+    <string name="hint_payment_amount">Amount paid (R)</string>
+    <string name="hint_payment_month">Month paid for (e.g. 2026-11)</string>
+    <string name="hint_payment_reference">Payment reference (optional)</string>
+    <string name="hint_payment_note">Note (optional)</string>
+    <string name="btn_choose_photo">Choose Photo</string>
+    <string name="btn_change_photo">Change Photo</string>
+    <string name="photo_none">No photo chosen yet</string>
+    <string name="photo_ready">Photo ready · %1$d KB</string>
+    <string name="cd_proof_preview">Preview of your proof of payment</string>
+    <string name="error_payment_amount">Enter a valid amount</string>
+    <string name="error_payment_month">Use the format YYYY-MM, e.g. 2026-11</string>
+    <string name="error_payment_photo">Please choose a photo of your proof of payment</string>
+    <string name="error_photo_unreadable">Couldn\'t read that photo. Try a different one.</string>
+    <string name="payment_submitted">Proof of payment sent</string>
+    <string name="payment_failed">Couldn\'t send: %1$s</string>
+    <string name="action_failed">Something went wrong: %1$s</string>
+    <string name="error_no_connection">No connection. Check your internet and try again.</string>
+    <string name="payment_load_failed">Couldn\'t load payments</string>
+    <string name="payment_status_pending">Pending review</string>
+    <string name="payment_status_verified">Verified</string>
+    <string name="payment_status_rejected">Rejected</string>
+    <string name="payment_reference_line">Ref: %1$s</string>
+    <string name="payment_rejected_reason">Reason: %1$s</string>
+    <string name="payments_title">Payments</string>
+    <string name="payments_card_summary">Review tenants\' proof of payment</string>
+    <string name="no_payments">No payments submitted yet.</string>
+    <string name="btn_view_proof">View Proof</string>
+    <string name="btn_approve">Approve</string>
+    <string name="btn_reject">Reject</string>
+    <string name="btn_back">Back</string>
+    <string name="action_close">Close</string>
+    <string name="dialog_reject_title">Reject payment</string>
+    <string name="hint_reject_reason">Reason (required)</string>
+    <string name="error_reject_reason">Please give a reason</string>
+    <string name="payment_approved">Payment approved</string>
+    <string name="payment_rejected">Payment rejected</string>
+    <string name="proof_load_failed">Couldn\'t load the proof</string>
+
+    <string name="notif_channel_payments_name">Payments</string>
+    <string name="notif_channel_payments_desc">New and reviewed proof of payment</string>
+    <string name="notif_new_payment_title">New proof of payment</string>
+    <string name="notif_payment_update_title">Payment update</string>
+    <string name="notif_payment_verified_text">Your payment for %1$s was verified</string>
+    <string name="notif_payment_rejected_plain">Your payment for %1$s was rejected</string>
+    <string name="notif_payment_rejected_text">Your payment for %1$s was rejected: %2$s</string>
+
 </resources>

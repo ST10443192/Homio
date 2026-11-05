@@ -27,7 +27,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Maintenance"
+                android:text="@string/nav_maintenance"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/homio_navy"/>
@@ -36,7 +36,7 @@
                 android:id="@+id/btnReportProblem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+ Report"
+                android:text="@string/btn_report"
                 android:backgroundTint="@color/homio_purple"
                 android:textColor="@color/white"/>
         </LinearLayout>
